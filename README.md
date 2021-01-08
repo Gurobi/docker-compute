@@ -39,7 +39,7 @@ The `gurobi/compute` image provides a Docker image ready to be deployed in a clu
 ## Getting a Gurobi license
 
 Please contact your sales representative at [sales@gurobi.com](mailto:sales@gurobi.com) to discuss licensing options. 
-Note that other standard license types (NODE, Academic) do not work with Docker.
+Note that standard license types (NODE, Academic) do not work with Docker.
 
 ## Using the client license
 
