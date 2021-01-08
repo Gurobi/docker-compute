@@ -6,7 +6,7 @@ Where to get help: [Gurobi Support](https://www.gurobi.com/support/), [Gurobi Do
 
 # Supported tags and respective Dockerfile links
 ## Simple Tags
-* [9.1.1, latest](https://github.com/Gurobi/docker-compute/blob/main/9.1.1/Dockerfile)
+* [9.1.1, latest](https://github.com/Gurobi/docker-compute/blob/master/9.1.1/Dockerfile)
 
 # Quick reference (cont.)
 Where to file issues: https://github.com/Gurobi/docker-compute/issues
