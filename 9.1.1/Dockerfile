@@ -3,7 +3,7 @@
 #
 
 FROM ubuntu:20.04 as build
-ARG GRB_VERSION=9.1.0
+ARG GRB_VERSION=9.1.1
 ARG GRB_SHORT_VERSION=9.1
 
 # install server package and copy the files
@@ -22,7 +22,7 @@ RUN apt-get update \
 
 FROM ubuntu:20.04 AS package
 
-ARG GRB_VERSION=9.1.0
+ARG GRB_VERSION=9.1.1
 
 LABEL vendor="Gurobi"
 LABEL version=${GRB_VERSION}
