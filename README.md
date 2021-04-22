@@ -5,8 +5,12 @@ Maintained by: [Gurobi Optimization](https://www.gurobi.com)
 Where to get help: [Gurobi Support](https://www.gurobi.com/support/), [Gurobi Documentation](https://www.gurobi.com/documentation/)
 
 # Supported tags and respective Dockerfile links
-## Simple Tags
-* [9.1.1, latest](https://github.com/Gurobi/docker-compute/blob/master/9.1.1/Dockerfile)
+
+* [9.1.2, latest](https://github.com/Gurobi/docker-compute/blob/master/9.1.2/Dockerfile)
+* [9.1.1](https://github.com/Gurobi/docker-compute/blob/master/9.1.1/Dockerfile)
+
+When building a production application, we recommend using an explicit version number instead of the `latest` tag.
+This way, you are in control of the upgrade process of your application.
 
 # Quick reference (cont.)
 
@@ -45,21 +49,32 @@ Note that standard license types (NODE, Academic) do not work with Docker.
 You will need to specify a set of properties to connect to a license server.  You have a few options:
 * Mounting the client license file:
 You can store connection parameters in a client license file (typically called `gurobi.lic`) 
-and mount it to the container. This option provides a simple approach for testing.
+and mount it to the container. 
+This option provides a simple approach for testing with Docker.
+When using Kubernetes, the license file can be stored as a secret and mounted in the container.
 
 * Setting parameters through environment variables: Please contact Gurobi support for details.
 
 # How to use this image?
-## Start a `compute` server instance
+## Using Docker
+
+The following command mounts the license file from the current directory `$PWD` 
+and starts a Compute Server instance.
+
 ```console
 $ docker run  -p61000:61000 \
               --volume=$PWD/gurobi.lic:/opt/gurobi/gurobi.lic:ro  \
               gurobi/compute --hostname=localhost
 ```
 
-... where `$PWD` is the current directory.
+If you have the Gurobi Optimizer client installed locally, you can test your deployment by 
+submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
-## ... via docker stack deploy or docker-compose
+```
+$ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
+```
+
+## Using Docker Compose
 Example `docker-compose.yml` for a compute server:
 
 ```
@@ -77,8 +92,14 @@ services:
 
 Run `$ docker-compose up `
 
+If you have the Gurobi Optimizer client installed locally, you can test your deployment by 
+submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
-## ... via Kubernetes deployment
+```
+$ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
+```
+
+## Using Kubernetes
 
 If you want to mount a specific license with Kubernetes, it can be done using a secret. 
 ```
@@ -92,11 +113,11 @@ A simple deployment file is provided as a [reference](https://github.com/Gurobi/
 kubectl apply -f k8s.yaml
 ```
 
-
-## Run some examples
+If you have the Gurobi Optimizer client installed locally, you can test your deployment by 
+submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
 ```
-$ gurobi_cl  --server=localhost:61000 .../Gurobi911/examples/data/glass4.mps
+$ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
 ```
 
 # License
