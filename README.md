@@ -77,6 +77,22 @@ services:
 
 Run `$ docker-compose up `
 
+
+## ... via Kubernetes deployment
+
+If you want to mount a specific license with Kubernetes, it can be done using a secret. 
+```
+kubectl create secret generic gurobi-lic --from-file="gurobi.lic=$PWD/gurobi.lic"
+```
+
+Then you can start a pod that will run the compute server in a container and expose it as a service. 
+A simple deployment file is provided as a [reference](https://github.com/Gurobi/docker-compute/blob/master/9.1.2/k8s.yaml).
+
+```
+kubectl apply -f k8s.yaml
+```
+
+
 ## Run some examples
 
 ```
