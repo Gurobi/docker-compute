@@ -55,6 +55,10 @@ When using Kubernetes, the license file can be stored as a secret and mounted in
 
 * Setting parameters through environment variables: Please contact Gurobi support for details.
 
+We do not recommend adding the license file to the Docker image itself. It is not a flexible 
+solution as you may not reuse the same image with different settings. More importantly, it is not secure
+as some license files need to contain credentials in the form of API keys that should remain private.
+
 # How to use this image?
 ## Using Docker
 
