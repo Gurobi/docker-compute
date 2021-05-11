@@ -41,25 +41,34 @@ The `gurobi/compute` image provides a Docker image ready to be deployed in a clu
 
 ## Getting a Gurobi license
 
+The [Web License Service](https://www.gurobi.com/web-license-service/) (WLS) is a new Gurobi licensing service 
+for containerized environments (Docker, Kubernetes...). Gurobi components can automatically request and renew license tokens to 
+the WLS servers available in several regions worldwide. WLS only requires that your container has access to the 
+Internet. Commercial users can request an evaluation and academic users can request a free license.
+Please register to access the [Web License Manager](https://license.gurobi.com) and read the
+[documentation](https://license.gurobi.com/manager/doc/overview)
+
+Note that other standard license types (NODE, Academic) do not work with containers.
 Please contact your sales representative at [sales@gurobi.com](mailto:sales@gurobi.com) to discuss licensing options. 
-Note that standard license types (NODE, Academic) do not work with Docker.
 
 ## Using the client license
 
-You will need to specify a set of properties to connect to a license server.  You have a few options:
+You will need to specify a set of properties to connect to a license server.  You have two options:
 * Mounting the client license file:
 You can store connection parameters in a client license file (typically called `gurobi.lic`) 
 and mount it to the container. 
 This option provides a simple approach for testing with Docker.
 When using Kubernetes, the license file can be stored as a secret and mounted in the container.
 
-* Setting parameters through environment variables: Please contact Gurobi support for details.
+* Setting parameters through environment variables for a WLS license: GRB_WLSACCESSID, GRB_WLSSECRET, and GRB_LICENSEID.
+These variables are used to pass the access ID, the secret, and the license ID respectively.
 
 We do not recommend adding the license file to the Docker image itself. It is not a flexible 
 solution as you may not reuse the same image with different settings. More importantly, it is not secure
 as some license files need to contain credentials in the form of API keys that should remain private.
 
 # How to use this image?
+
 ## Using Docker
 
 The following command mounts the license file from the current directory `$PWD` 
@@ -103,6 +112,9 @@ submitting a model for optimization with the ``gurobi_cl`` command line tool.
 $ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
 ```
 
+If you want to set up a cluster of Compute Server nodes, we recommend using a 
+[Cluster Manager](https://hub.docker.com/r/gurobi/manager).
+
 ## Using Kubernetes
 
 If you want to mount a specific license with Kubernetes, it can be done using a secret. 
@@ -111,7 +123,8 @@ kubectl create secret generic gurobi-lic --from-file="gurobi.lic=$PWD/gurobi.lic
 ```
 
 Then you can start a pod that will run the compute server in a container and expose it as a service. 
-A simple deployment file is provided as a [reference](https://github.com/Gurobi/docker-compute/blob/master/9.1.2/k8s.yaml).
+A simple deployment file is provided as an 
+[example](https://github.com/Gurobi/docker-compute/blob/master/9.1.2/k8s.yaml).
 
 ```
 kubectl apply -f k8s.yaml
@@ -123,6 +136,9 @@ submitting a model for optimization with the ``gurobi_cl`` command line tool.
 ```
 $ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
 ```
+
+If you want to set up a cluster of Compute Server nodes, we recommend using a 
+[Cluster Manager](https://hub.docker.com/r/gurobi/manager).
 
 # License
 
