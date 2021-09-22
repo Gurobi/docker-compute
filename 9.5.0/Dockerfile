@@ -50,8 +50,10 @@ COPY --from=build /opt/gurobi_server/linux64/resources/grb_rs ./gurobi_server/li
 ENV GRB_HOME=/opt/gurobi_server/linux64
 ENV PATH $GRB_HOME/bin:$PATH
 WORKDIR $GRB_HOME/bin
+# changes group permissions to run as a non-root user for better security
 RUN chgrp -R 0 /opt/gurobi_server/linux64/bin && \
     chmod -R g=u /opt/gurobi_server/linux64/bin
+# User to run the container
 USER 1001
 # expose command line
 ENTRYPOINT ["grb_rs", "--port=61000","--console-ts"]
