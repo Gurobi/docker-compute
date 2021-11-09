@@ -30,7 +30,7 @@ spec:
             optional: true
       containers:
         - name: gurobi-compute
-          image: gurobi/compute:9.1.2
+          image: gurobi/compute:9.5.0
           ports:
             - containerPort: 61000
           volumeMounts:

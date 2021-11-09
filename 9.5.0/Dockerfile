@@ -3,8 +3,8 @@
 #
 
 FROM ubuntu:20.04 as build
-ARG GRB_VERSION=9.5.0beta
-ARG GRB_SHORT_VERSION=9.5beta
+ARG GRB_VERSION=9.5.0
+ARG GRB_SHORT_VERSION=9.5
 
 # install server package and copy the files
 WORKDIR /opt
@@ -13,8 +13,7 @@ RUN apt-get update \
        ca-certificates  \
        wget \
     && update-ca-certificates \
-#   && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_linux64.tar.gz \
-    && wget -v https://download.gurobi.com/api/public/dl/MYFBOhpu/gurobi_server${GRB_VERSION}_linux64.tar.gz \
+    && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_linux64.tar.gz \
     && tar -xvf gurobi_server${GRB_VERSION}_linux64.tar.gz  \
     && rm -f gurobi_server${GRB_VERSION}_linux64.tar.gz \
     && mv -f gurobi_server* gurobi_server \
@@ -23,7 +22,7 @@ RUN apt-get update \
 
 FROM ubuntu:20.04 AS package
 
-ARG GRB_VERSION=9.5.0beta
+ARG GRB_VERSION=9.5
 
 LABEL vendor="Gurobi"
 LABEL version=${GRB_VERSION}
