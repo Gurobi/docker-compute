@@ -100,7 +100,7 @@ services:
     ports:
       - "61000:61000"
     command: --hostname=localhost
-  volumes:
+    volumes:
        - ./gurobi.lic:/opt/gurobi/gurobi.lic:ro
 ```
 
