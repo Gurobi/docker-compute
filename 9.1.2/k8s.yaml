@@ -37,6 +37,22 @@ spec:
             - name: gurobi-lic
               mountPath: "/opt/gurobi"
               readOnly: true
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 5
+            httpGet:
+              port: 61000
+              path: /api/v1/ping
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 5
+            httpGet:
+              port: 61000
+              path: /api/v1/ping
 
 ---
 apiVersion: v1
