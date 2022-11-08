@@ -1,6 +1,6 @@
 # This file deploys Gurobi Compute Server node
 #
-# 1- Create the license file as a secret
+## 1- Create the license file as a secret
 #    kubectl create secret generic gurobi-lic --from-file="gurobi.lic=$PWD/gurobi.lic"
 #
 # 2- Deploy the compute server
@@ -30,7 +30,7 @@ spec:
             optional: true
       containers:
         - name: gurobi-compute
-          image: gurobi/compute:10.0.0beta
+          image: gurobi/compute:10.0.0
           ports:
             - containerPort: 61000
           volumeMounts:
