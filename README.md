@@ -6,9 +6,10 @@ Where to get help: [Gurobi Support](https://www.gurobi.com/support/), [Gurobi Do
 
 # Supported tags and respective Dockerfile links
 
+* [10.0.0](https://github.com/Gurobi/docker-compute/blob/master/10.0.0/Dockerfile)
 * [9.5.2, latest](https://github.com/Gurobi/docker-compute/blob/master/9.5.2/Dockerfile)
 * [9.5.1](https://github.com/Gurobi/docker-compute/blob/master/9.5.1/Dockerfile)
-* [9.5.0](https://github.com/Gurobi/docker-compute/blob/master/9.5.0/Dockerfile)
+
 
 When building a production application, we recommend using an explicit version number instead of the `latest` tag.
 This way, you are in control of the upgrade process of your application.
@@ -126,7 +127,7 @@ kubectl create secret generic gurobi-lic --from-file="gurobi.lic=$PWD/gurobi.lic
 
 Then you can start a pod that will run the compute server in a container and expose it as a service. 
 A simple deployment file is provided as an 
-[example](https://github.com/Gurobi/docker-compute/blob/master/9.5.1/k8s.yaml).
+[example](https://github.com/Gurobi/docker-compute/blob/master/10.0.0/k8s.yaml).
 
 ```
 kubectl apply -f k8s.yaml
