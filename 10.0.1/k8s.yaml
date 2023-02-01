@@ -1,0 +1,68 @@
+# This file deploys Gurobi Compute Server node
+#
+## 1- Create the license file as a secret
+#    kubectl create secret generic gurobi-lic --from-file="gurobi.lic=$PWD/gurobi.lic"
+#
+# 2- Deploy the compute server
+#    kubectl apply -f k8s.yaml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gurobi-compute
+  name: gurobi-compute
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gurobi-compute
+  template:
+    metadata:
+      labels:
+        app: gurobi-compute
+    spec:
+      volumes:
+        - name: gurobi-lic
+          secret:
+            secretName: gurobi-lic
+            optional: true
+      containers:
+        - name: gurobi-compute
+          image: gurobi/compute:10.0.1
+          ports:
+            - containerPort: 61000
+          volumeMounts:
+            - name: gurobi-lic
+              mountPath: "/opt/gurobi"
+              readOnly: true
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 5
+            httpGet:
+              port: 61000
+              path: /api/v1/ping
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 5
+            httpGet:
+              port: 61000
+              path: /api/v1/ping
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gurobi-compute
+spec:
+  type: LoadBalancer
+  selector:
+    app: gurobi-compute
+  ports:
+    - port: 61000
+      targetPort: 61000
+
