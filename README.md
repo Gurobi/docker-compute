@@ -119,21 +119,6 @@ $ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
 If you want to set up a cluster of Compute Server nodes, we recommend using a 
 [Cluster Manager](https://hub.docker.com/r/gurobi/manager).
 
-## Using Kubernetes
-
-If you want to mount a specific license with Kubernetes, it can be done using a secret. 
-```
-kubectl create secret generic gurobi-lic --from-file="gurobi.lic=$PWD/gurobi.lic"
-```
-
-Then you can start a pod that will run the compute server in a container and expose it as a service. 
-A simple deployment file is provided as an 
-[example](https://github.com/Gurobi/docker-compute/blob/master/10.0.1/k8s.yaml).
-
-```
-kubectl apply -f k8s.yaml
-```
-
 If you have the Gurobi Optimizer client installed locally, you can test your deployment by 
 submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
