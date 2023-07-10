@@ -125,15 +125,6 @@ If you want to set up a cluster of Compute Server nodes, we recommend using a
 
 
 
-
-
-If you have the Gurobi Optimizer client installed locally, you can test your deployment by 
-submitting a model for optimization with the ``gurobi_cl`` command line tool.
-
-```
-$ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
-```
-
 # License
 
 By downloading and using this image, you agree with the 
