@@ -116,7 +116,8 @@ submitting a model for optimization with the ``gurobi_cl`` command line tool.
 ```
 $ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
 ```
-
+## Using Kubernetes
+For an [example](https://github.com/Gurobi/docker-manager/blob/master/10.0.2/k8s.yaml) on how to deploy Compute Server with the Cluster Manager in Kubernetes, visit the [Cluster Manager](https://hub.docker.com/r/gurobi/manager) Page and scroll to using Kubernetes section 
 If you want to set up a cluster of Compute Server nodes, we recommend using a 
 [Cluster Manager](https://hub.docker.com/r/gurobi/manager).
 
