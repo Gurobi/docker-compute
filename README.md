@@ -123,6 +123,10 @@ For [example](https://github.com/Gurobi/docker-manager/blob/master/10.0.2/k8s.ya
 If you want to set up a cluster of Compute Server nodes, we recommend using a
 [Cluster Manager](https://hub.docker.com/r/gurobi/manager).
 
+
+
+
+
 If you have the Gurobi Optimizer client installed locally, you can test your deployment by 
 submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
