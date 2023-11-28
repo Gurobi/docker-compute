@@ -3,7 +3,7 @@
 #
 
 FROM ubuntu:20.04 as build
-ARG GRB_VERSION=11.0.0beta
+ARG GRB_VERSION=11.0.0
 ARG GRB_SHORT_VERSION=11.0
 
 # install server package and copy the files
