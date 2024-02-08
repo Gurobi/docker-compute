@@ -8,7 +8,7 @@ Where to get help: [Gurobi Support](https://www.gurobi.com/support/), [Gurobi Do
 
 * [11.0.0, latest](https://github.com/Gurobi/docker-compute/blob/master/11.0.0/Dockerfile)
 * [10.0.3](https://github.com/Gurobi/docker-compute/blob/master/10.0.3/Dockerfile)
-* [10.0.2] (https://github.com/Gurobi/docker-compute/blob/master/10.0.2/Dockerfile)
+* [10.0.2](https://github.com/Gurobi/docker-compute/blob/master/10.0.2/Dockerfile)
 * [10.0.1](https://github.com/Gurobi/docker-compute/blob/master/10.0.1/Dockerfile)
 * [10.0.0](https://github.com/Gurobi/docker-compute/blob/master/10.0.0/Dockerfile)
 * [9.5.2](https://github.com/Gurobi/docker-compute/blob/master/9.5.2/Dockerfile)
