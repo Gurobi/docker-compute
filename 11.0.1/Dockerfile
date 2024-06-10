@@ -18,16 +18,16 @@ ENV GRB_PLATFORM=${GRB_PLATFORM}
 WORKDIR /opt
 
 # Install dependencies and download the appropriate Gurobi package
-RUN export SUFFIX=$(cat /platform.txt) && echo $GRB_PLATFORM \
+RUN export GRB_PLATFORM=$(cat /platform.txt) && echo $GRB_PLATFORM \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
        ca-certificates \
        wget \
     && update-ca-certificates \
-    && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_$SUFFIX.tar.gz \
-    && tar -xvf gurobi_server${GRB_VERSION}_$SUFFIX*.tar.gz \
+    && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_$GRB_PLATFORM.tar.gz \
+    && tar -xvf gurobi_server${GRB_VERSION}_$GRB_PLATFORM*.tar.gz \
     && pwd && ls -alrt \
-    && rm -f gurobi_server${GRB_VERSION}_$SUFFIX*.tar.gz \
+    && rm -f gurobi_server${GRB_VERSION}_$GRB_PLATFORM*.tar.gz \
     && mv -f gurobi_server* gurobi_server \
     && rm -rf gurobi_server/$GRB_PLATFORM/docs \
     && mv -f gurobi_server/$GRB_PLATFORM*  gurobi_server/linux
