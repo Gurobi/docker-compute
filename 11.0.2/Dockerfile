@@ -6,28 +6,25 @@ ARG GRB_VERSION=11.0.2
 ARG GRB_SHORT_VERSION=11.0
 ARG TARGETPLATFORM
 
-# Create a script to determine GRB_PLATFORM based on TARGETPLATFORM
-RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-        echo "armlinux64" > /platform.txt; \
-      else \
-        echo "linux64" > /platform.txt; \
-    fi
-
-WORKDIR /opt
-
-# Install dependencies and download the appropriate Gurobi package
-RUN export GRB_PLATFORM=$(cat /platform.txt) && echo $GRB_PLATFORM \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install --no-install-recommends -y \
        ca-certificates \
        wget \
-    && update-ca-certificates \
+    && update-ca-certificates
+
+WORKDIR /opt
+
+Download the appropriate Gurobi package
+RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+        export GRB_PLATFORM="armlinux64"; \
+      else \
+        export GRB_PLATFORM="linux64"; \
+    fi \
     && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_$GRB_PLATFORM.tar.gz \
     && tar -xvf gurobi_server${GRB_VERSION}_$GRB_PLATFORM*.tar.gz \
     && pwd && ls -alrt \
-    && rm -f gurobi_server${GRB_VERSION}_$GRB_PLATFORM*.tar.gz \
+    && rm *.tar.gz \
     && mv -f gurobi_server* gurobi_server \
-    && rm -rf gurobi_server/$GRB_PLATFORM/docs \
     && mv -f gurobi_server/$GRB_PLATFORM*  gurobi_server/linux
 # After the file renaming, a clean image is built
 
