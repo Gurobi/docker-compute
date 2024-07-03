@@ -14,7 +14,7 @@ RUN apt-get update \
 
 WORKDIR /opt
 
-Download the appropriate Gurobi package
+#Download the appropriate Gurobi package
 RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
         export GRB_PLATFORM="armlinux64"; \
       else \
