@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  compute:
+    image: gurobi/compute:12.0.0beta
+    restart: always
+    ports:
+      - "61000:61000"
+    command: --hostname=localhost
+    volumes:
+      - ./gurobi.lic:/opt/gurobi/gurobi.lic:ro
