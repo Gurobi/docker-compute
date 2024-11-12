@@ -2,7 +2,7 @@
 # Dockerfile to create a Compute Server Node
 # Define the build stage
 FROM ubuntu:20.04 as build
-ARG GRB_VERSION=12.0.0beta
+ARG GRB_VERSION=12.0.0
 ARG GRB_SHORT_VERSION=12.0
 ARG TARGETPLATFORM
 
@@ -20,8 +20,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
       else \
         export GRB_PLATFORM="linux64"; \
     fi \
-    && wget -v https://download.gurobi.com/api/public/dl/YzN2b_KQ/gurobi_server${GRB_VERSION}_$GRB_PLATFORM.tar.gz \
-#    && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_$GRB_PLATFORM.tar.gz \
+    && wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi_server${GRB_VERSION}_$GRB_PLATFORM.tar.gz \
     && tar -xvf gurobi_server${GRB_VERSION}_$GRB_PLATFORM*.tar.gz \
     && pwd && ls -alrt \
     && rm *.tar.gz \
@@ -32,7 +31,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
 # Define the final stage
 FROM ubuntu:20.04 AS package
 
-ARG GRB_VERSION=12.0.0beta
+ARG GRB_VERSION=12.0.0
 ARG TARGETPLATFORM
 
 LABEL vendor="Gurobi"
