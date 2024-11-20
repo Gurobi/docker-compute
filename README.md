@@ -95,7 +95,7 @@ If you have the Gurobi Optimizer client installed locally, you can test your dep
 submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
 ```
-$ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
+$ gurobi_cl  ComputeServer=localhost:61000 ...examples/data/glass4.mps
 ```
 
 ## Using Docker Compose
@@ -121,7 +121,7 @@ If you have the Gurobi Optimizer client installed locally, you can test your dep
 submitting a model for optimization with the ``gurobi_cl`` command line tool.
 
 ```
-$ gurobi_cl  --server=localhost:61000 ...examples/data/glass4.mps
+$ gurobi_cl  ComputeServer=localhost:61000 ...examples/data/glass4.mps
 ```
 ## Using Kubernetes
 For [example](https://github.com/Gurobi/docker-manager/blob/master/12.0.0/k8s.yaml) on how to deploy Compute Server with the Gurobi Cluster Manager in Kubernetes, visit the [Cluster Manager](https://hub.docker.com/r/gurobi/manager) page, and scroll down to using Kubernetes.
