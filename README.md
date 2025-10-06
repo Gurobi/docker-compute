@@ -6,6 +6,7 @@ Where to get help: [Gurobi Support](https://www.gurobi.com/support/), [Gurobi Do
 
 # Supported tags and respective Dockerfile links
 
+* [13.0.0beta](https://github.com/Gurobi/docker-compute/blob/master/13.0.0/Dockerfile)
 * [12.0.3, latest](https://github.com/Gurobi/docker-compute/blob/master/12.0.3/Dockerfile)
 * [12.0.2](https://github.com/Gurobi/docker-compute/blob/master/12.0.2/Dockerfile)
 * [12.0.1](https://github.com/Gurobi/docker-compute/blob/master/12.0.1/Dockerfile)
@@ -127,7 +128,7 @@ submitting a model for optimization with the ``gurobi_cl`` command line tool.
 $ gurobi_cl  ComputeServer=localhost:61000 ...examples/data/glass4.mps
 ```
 ## Using Kubernetes
-For [example](https://github.com/Gurobi/docker-manager/blob/master/12.0.3/k8s.yaml) on how to deploy Compute Server with the Gurobi Cluster Manager in Kubernetes, visit the [Cluster Manager](https://hub.docker.com/r/gurobi/manager) page, and scroll down to using Kubernetes.
+For [example](https://github.com/Gurobi/docker-manager/blob/master/13.0.0/k8s.yaml) on how to deploy Compute Server with the Gurobi Cluster Manager in Kubernetes, visit the [Cluster Manager](https://hub.docker.com/r/gurobi/manager) page, and scroll down to using Kubernetes.
 
 If you want to set up a cluster of Compute Server nodes, we recommend using a
 [Cluster Manager](https://hub.docker.com/r/gurobi/manager).
