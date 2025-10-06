@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   compute:
-    image: gurobi/compute:13.0.0beta
+    image: gurobi/compute:13.0.0beta1
     restart: always
     ports:
       - "61000:61000"
