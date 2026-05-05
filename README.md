@@ -56,7 +56,7 @@ balancing capabilities. Users can monitor jobs, and administrators can manage th
 
 The `gurobi/compute` image provides a Docker image ready to be deployed in a cluster.
 
-## Getting a Gurobi license
+### Getting a Gurobi license
 
 The [Web License Service](https://www.gurobi.com/web-license-service/) (WLS) is a new Gurobi licensing service 
 for containerized environments (Docker, Kubernetes...). Gurobi components can automatically request and renew license tokens to 
